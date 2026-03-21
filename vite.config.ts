@@ -30,5 +30,29 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (
+              id.includes("node_modules/react") ||
+              id.includes("node_modules/react-dom") ||
+              id.includes("node_modules/react-router-dom")
+            ) {
+              return "react";
+            } else if (id.includes("node_modules/jspdf")) {
+              return "pdf";
+            } else if (
+              id.includes("node_modules/gsap") ||
+              id.includes("node_modules/@gsap/react")
+            ) {
+              return "animation";
+            } else if (id.includes("node_modules/lz-string")) {
+              return "compression";
+            }
+          },
+        },
+      },
+    },
   };
 });
