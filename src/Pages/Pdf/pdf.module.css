@@ -1,0 +1,96 @@
+/* PDF Page */
+.pdfPage {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+  font-family: "Patrick Hand", cursive;
+  color: var(--primary-color, #2c3e6b);
+}
+
+.pdfTitle {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 32px;
+  color: var(--text-heading, #1e2d5a);
+}
+
+.pdfContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pdfDateBlock {
+  border-bottom: 1px solid var(--separator-light, #d5dce8);
+  padding-bottom: 16px;
+}
+
+.pdfDate {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-heading, #1e2d5a);
+}
+
+.pdfSubjectRow {
+  padding: 2px 0 2px 12px;
+  font-size: 1.25rem;
+  margin: 0;
+  color: var(--text-body, #3a4f7a);
+}
+
+/* Download Button */
+.pdfDownloadBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--primary-color, #2c3e6b);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Patrick Hand", cursive;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(44, 62, 107, 0.3);
+  transition:
+    background 0.2s,
+    transform 0.15s;
+  z-index: 100;
+}
+
+.pdfDownloadBtn:hover {
+  background: var(--primary-dark, #1a2a4a);
+  transform: translateY(-1px);
+}
+
+/* Loading */
+.pdfStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+  font-family: "Patrick Hand", cursive;
+  color: var(--text-subtitle, #5a6f9a);
+  font-size: 1.1rem;
+}
+
+.pdfSpinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e0e5ee;
+  border-top-color: var(--primary-color, #2c3e6b);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

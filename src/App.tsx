@@ -1,25 +1,13 @@
-import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
-
-import { lazy, Suspense } from "react";
-
-const About = lazy(() => import("./components/About"));
-const Features = lazy(() => import("./components/Features"));
-const Download = lazy(() => import("./components/Download"));
-const Contribute = lazy(() => import("./components/Contribute"));
+import { Routes, Route } from "react-router-dom";
+import MainPage from "./Pages/MainPage";
+import OpenPdf from "./Pages/Pdf";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <Suspense fallback={null}>
-        <About />
-        <Features />
-        <Download />
-        <Contribute />
-      </Suspense>
-    </>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/pdf" element={<OpenPdf />} />
+    </Routes>
   );
 }
 

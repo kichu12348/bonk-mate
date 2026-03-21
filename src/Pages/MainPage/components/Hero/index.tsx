@@ -21,13 +21,14 @@ const Hero = () => {
   const cloud3Ref = useRef<HTMLImageElement>(null);
   const cloud4Ref = useRef<HTMLImageElement>(null);
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(false);
 
   const checkMobile = () => {
     setIsMobile(window.innerWidth <= 768);
   };
 
   useEffect(() => {
+    checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
