@@ -94,3 +94,9 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 768px) {
+  .pdfPage {
+    padding: 20px 12px 80px;
+  }
+}

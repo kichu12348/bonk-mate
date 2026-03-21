@@ -47,7 +47,10 @@ html {
 
 body {
   font-family: "Patrick Hand", cursive;
-  background: var(--bg-image);
+  background-image: var(--bg-image);
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat;
   color: var(--primary-color);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -78,6 +81,11 @@ body::-webkit-scrollbar-track-piece {
 
   *::-webkit-scrollbar {
     display: none;
+  }
+
+  body {
+    background-size: contain;
+    background-repeat: repeat;
   }
 }
 
