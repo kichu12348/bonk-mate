@@ -49,6 +49,7 @@
   color: var(--text-heading);
   line-height: 1.15;
   letter-spacing: -0.01em;
+  overflow: visible;
 }
 
 .heroIllustration {
