@@ -95,23 +95,28 @@ function generatePdf(data: DutyLeaveData) {
 
 export default function OpenPdf() {
   const [data, setData] = useState<DutyLeaveData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get("d");
+    const urlParams = window.location.search;
+    const query = urlParams.split("?d=")[1].trim();
     if (query) {
       try {
         const decompressed = LZstring.decompressFromBase64(query);
+
         if (decompressed) {
           setData(JSON.parse(decompressed));
+        } else {
+          setError("No data found");
         }
-      } catch {
-        /* invalid data */
+      } catch (err) {
+        console.log(err);
+        setError("Invalid data");
       }
     }
   }, []);
 
-  if (!data) {
+  if (!data && !error) {
     return (
       <div className={styles.pdfStatus}>
         <div className={styles.pdfSpinner} />
@@ -120,41 +125,57 @@ export default function OpenPdf() {
     );
   }
 
-  const sortedDates = Object.keys(data).sort(
-    (a, b) => new Date(a).getTime() - new Date(b).getTime(),
-  );
-
-  return (
-    <div className={styles.pdfPage}>
-      <h1 className={styles.pdfTitle}>Duty Leave Report</h1>
-
-      <div className={styles.pdfContent}>
-        {sortedDates.map((dateKey) => {
-          const subjects = data[dateKey];
-          const subjectKeys = Object.keys(subjects).sort();
-
-          return (
-            <div key={dateKey} className={styles.pdfDateBlock}>
-              <h2 className={styles.pdfDate}>{formatDate(dateKey)}</h2>
-              {subjectKeys.map((sub) => {
-                const hours = subjects[sub];
-                return (
-                  <p key={sub} className={styles.pdfSubjectRow}>
-                    {sub} :- {hours.map((h) => ordinal(h) + " hr").join(", ")}
-                  </p>
-                );
-              })}
-            </div>
-          );
-        })}
+  if (error) {
+    return (
+      <div className={styles.pdfStatus}>
+        <p
+          style={{
+            fontSize: "3rem",
+            fontWeight: "bold",
+          }}
+        >
+          {error}
+        </p>
       </div>
+    );
+  }
+  if (data) {
+    const sortedDates = Object.keys(data).sort(
+      (a, b) => new Date(a).getTime() - new Date(b).getTime(),
+    );
 
-      <button
-        className={styles.pdfDownloadBtn}
-        onClick={() => generatePdf(data)}
-      >
-        <FaDownload /> Download PDF
-      </button>
-    </div>
-  );
+    return (
+      <div className={styles.pdfPage}>
+        <h1 className={styles.pdfTitle}>Duty Leave Report</h1>
+
+        <div className={styles.pdfContent}>
+          {sortedDates.map((dateKey) => {
+            const subjects = data[dateKey];
+            const subjectKeys = Object.keys(subjects).sort();
+
+            return (
+              <div key={dateKey} className={styles.pdfDateBlock}>
+                <h2 className={styles.pdfDate}>{formatDate(dateKey)}</h2>
+                {subjectKeys.map((sub) => {
+                  const hours = subjects[sub];
+                  return (
+                    <p key={sub} className={styles.pdfSubjectRow}>
+                      {sub} :- {hours.map((h) => ordinal(h) + " hr").join(", ")}
+                    </p>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+
+        <button
+          className={styles.pdfDownloadBtn}
+          onClick={() => generatePdf(data)}
+        >
+          <FaDownload /> Download PDF
+        </button>
+      </div>
+    );
+  }
 }
