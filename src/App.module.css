@@ -1,0 +1,258 @@
+.pageWrapper {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Desktop Grid Layout (>= 1024px)
+   ========================================================================== */
+
+.mainGrid {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(180px, 1.1fr) minmax(auto, 3.8fr) minmax(180px, 1.1fr);
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 16px clamp(16px, 3vw, 48px) 24px clamp(16px, 3vw, 48px);
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* --- Left Column --- */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 16px 0;
+}
+
+.sidebarSlot {
+  display: flex;
+  flex-direction: column;
+}
+
+.leftDoodleSlot {
+  margin: auto 0;
+  padding-left: 10px;
+}
+
+.leftFooterSlot {
+  margin-top: auto;
+}
+
+.footerLeftText {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--color-text);
+  opacity: 0.9;
+}
+
+.footerLeftText div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Center Column --- */
+.centerColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: clamp(20px, 4vh, 44px);
+  padding: 8px 0;
+  margin: auto 0;
+}
+
+.heroSlot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.decisionSlot {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ctaSlot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Right Column --- */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+  padding: 16px 0;
+}
+
+.topRightDoodleSlot {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+
+.rightDoodleSlot {
+  margin: auto 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rightFooterSlot {
+  margin-top: auto;
+}
+
+.footerRightText {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--color-text);
+  opacity: 0.9;
+  text-align: right;
+}
+
+.footerRightText div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.dash {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+/* Mobile-only slots (hidden on desktop) */
+.mobileTimeSlot,
+.mobileTopDoodle,
+.mobileMidDoodleRight,
+.mobileFooter {
+  display: none;
+}
+
+/* ==========================================================================
+   Responsive Tablet (768px - 1023px)
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .mainGrid {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 20px 24px;
+    gap: 24px;
+  }
+
+  /* Repurpose left/right columns on tablet/mobile */
+  .leftColumn,
+  .rightColumn {
+    display: none;
+  }
+
+  .centerColumn {
+    gap: 24px;
+    padding: 0;
+  }
+
+  /* Reveal responsive elements in center stream */
+  .mobileTimeSlot {
+    display: block;
+    width: 100%;
+  }
+
+  .mobileTopDoodle {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: -10px;
+    padding-right: 12px;
+  }
+
+  .mobileMidDoodleLeft {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+
+  .mobileMidDoodleRight {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+  }
+
+  .mobileFooter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-grid-line);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-text);
+    opacity: 0.85;
+  }
+}
+
+/* ==========================================================================
+   Responsive Mobile (< 768px down to 320px)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .mainGrid {
+    padding: 10px 14px 16px;
+    gap: 14px;
+  }
+
+  .centerColumn {
+    gap: 14px;
+  }
+
+  .mobileTopDoodle {
+    justify-content: center;
+    margin-bottom: -10px;
+    padding-right: 0;
+  }
+
+  .mobileMidDoodleRight {
+    margin-top: 8px;
+  }
+
+  .mobileFooter {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    font-size: 0.68rem;
+  }
+}

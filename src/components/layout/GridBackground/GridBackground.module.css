@@ -1,0 +1,153 @@
+.gridContainer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Vertical grid lines */
+.vLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--color-grid-line);
+  transition: background-color 0.25s ease;
+}
+
+/* Match layout columns */
+.vLineLeft {
+  left: clamp(16px, 13vw, 170px);
+}
+
+.vLineRight {
+  right: clamp(16px, 13vw, 170px);
+}
+
+.vLineCenterLeft {
+  left: 33%;
+  display: none;
+}
+
+.vLineCenterRight {
+  right: 33%;
+  display: none;
+}
+
+/* Horizontal grid lines */
+.hLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--color-grid-line);
+  transition: background-color 0.25s ease;
+}
+
+.hLineHeader {
+  top: 72px;
+}
+
+/* On desktop, keep the editorial section dividers */
+.hLineHeroBottom {
+  top: 50%;
+  display: none;
+}
+
+.hLineCardBottom {
+  top: 75%;
+  display: none;
+}
+
+.hLineFooter {
+  bottom: 68px;
+}
+
+/* Crosshairs at grid intersections */
+.crosshair {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0.4;
+  display: none;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-text-secondary);
+}
+
+.crosshair::before {
+  top: 5px;
+  left: 0;
+  width: 12px;
+  height: 1px;
+}
+
+.crosshair::after {
+  left: 5px;
+  top: 0;
+  width: 1px;
+  height: 12px;
+}
+
+.chTopLeft {
+  top: 66px;
+  left: clamp(10px, calc(13vw - 6px), 164px);
+}
+
+.chTopRight {
+  top: 66px;
+  right: clamp(10px, calc(13vw - 6px), 164px);
+}
+
+.chBottomLeft {
+  bottom: 62px;
+  left: clamp(10px, calc(13vw - 6px), 164px);
+}
+
+.chBottomRight {
+  bottom: 62px;
+  right: clamp(10px, calc(13vw - 6px), 164px);
+}
+
+/* Desktop enhancements: show detailed drafting lines only when viewport height and width can accommodate */
+@media (min-width: 1024px) and (min-height: 700px) {
+  .vLineCenterLeft {
+    display: block;
+  }
+  .vLineCenterRight {
+    display: block;
+  }
+  .hLineHeroBottom {
+    display: block;
+  }
+  .hLineCardBottom {
+    display: block;
+  }
+  .crosshair {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .vLineLeft {
+    left: 12px;
+    opacity: 0.5;
+  }
+  .vLineRight {
+    right: 12px;
+    opacity: 0.5;
+  }
+  .hLineHeader {
+    top: 60px;
+  }
+  .hLineFooter {
+    bottom: 80px;
+  }
+}

@@ -1,0 +1,158 @@
+.header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(14px, 2.5vh, 24px) clamp(16px, 4vw, 48px);
+  width: 100%;
+  background-color: transparent;
+  gap: 12px;
+}
+
+.leftBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoImage {
+  width: clamp(28px, 2.5vw, 34px);
+  height: clamp(28px, 2.5vw, 34px);
+  object-fit: contain;
+  filter: var(--logo-filter, none);
+  transition: filter 0.25s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.divider {
+  display: inline-block;
+  width: 1px;
+  height: 18px;
+  background-color: var(--color-text-secondary);
+  opacity: 0.6;
+}
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.rightInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.motto {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.dash {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
+.actionsGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+  box-shadow: 0 1px 3px var(--color-shadow);
+  flex-shrink: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.actionBtn:hover {
+  border-color: var(--color-text-secondary);
+  color: var(--color-text);
+  transform: translateY(-1px);
+}
+
+.actionBtn:active {
+  transform: scale(0.92);
+}
+
+.actionBtn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.actionIcon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.githubBtn:hover .actionIcon {
+  transform: scale(1.14);
+}
+
+.themeToggleBtn:hover .actionIcon {
+  transform: rotate(18deg) scale(1.08);
+}
+
+@media (max-width: 860px) {
+  .tagline {
+    display: none;
+  }
+  .divider {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 12px 16px;
+  }
+  .motto {
+    display: none;
+  }
+  .dash {
+    display: none;
+  }
+}

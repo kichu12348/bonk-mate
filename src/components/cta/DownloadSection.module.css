@@ -1,0 +1,162 @@
+.ctaSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+  margin-top: 12px;
+}
+
+/* Button & Tick lines wrapper */
+.ctaWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 42px);
+  width: 100%;
+}
+
+.tickLine {
+  width: 1px;
+  height: 48px;
+  background-color: var(--color-grid-line);
+  opacity: 0.8;
+  display: block;
+}
+
+/* Primary CTA Button */
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: var(--color-card-button-bg);
+  color: var(--color-card-button-text);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 13px 26px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px var(--color-shadow);
+  user-select: none;
+  min-height: 48px;
+}
+
+.ctaButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-shadow);
+  color: var(--color-card-button-text);
+  border-color: rgba(61, 220, 132, 0.3);
+}
+
+.ctaButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.ctaButton:disabled {
+  opacity: 0.85;
+  cursor: wait;
+}
+
+.androidBtnIcon {
+  color: #3ddc84;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.buttonLabel {
+  white-space: nowrap;
+}
+
+.versionTag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-card-button-text);
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  margin-left: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.downloadIcon {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ctaButton:hover:not(:disabled) .downloadIcon {
+  transform: translateY(2px);
+  opacity: 1;
+}
+
+
+/* Meta container & Badges */
+.metaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.badgeLine {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  opacity: 0.85;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+.openSourceLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-border);
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.openSourceLink:hover {
+  color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .tickLine {
+    display: none;
+  }
+
+  .ctaButton {
+    width: 100%;
+    max-width: 340px;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+
+  .badgeLine {
+    gap: 6px;
+    font-size: 0.64rem;
+  }
+}
