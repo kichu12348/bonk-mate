@@ -1,17 +1,24 @@
 /// calls the render function
-import { readFile, writeFile } from "fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
+
+const LINK_REGEX = /<link\b[^>]*>/gi;
 
 async function prerender() {
   try {
     const { render } = await import("../dist/server/entry-server.js");
     const appHtml = render();
 
+    const linkTags = appHtml.match(LINK_REGEX) || [];
+
     const indexHtml = await readFile("./dist/static/index.html", "utf-8");
 
-    const html = indexHtml.replace(
-      '<div id="root"></div>',
-      `<div id=\"root\">${appHtml}</div>`,
-    );
+    const html = indexHtml
+      .replace(
+        '<div id="root"></div>',
+        `<div id=\"root\">${appHtml.replace(LINK_REGEX, "").trim()}</div>`,
+      )
+      .replace("<!--app-head-->", linkTags.join(""));
+
     await writeFile("./dist/static/index.html", html);
 
     //GREEN COLOR
